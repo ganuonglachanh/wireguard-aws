@@ -4,9 +4,9 @@ wg-quick down wg0
 systemctl stop wg-quick@wg0
 systemctl disable wg-quick@wg0
 
-yes | apt autoremove wireguard wireguard-dkms wireguard-tools
+yes | sudo yum autoremove wireguard wireguard-dkms wireguard-tools
 #yes | apt autoremove software-properties-common
-yes | apt update
+#yes | sudo yum update
 
 rm -rf /etc/wireguard
 
