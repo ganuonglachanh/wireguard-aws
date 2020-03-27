@@ -1,14 +1,13 @@
 #!/bin/bash
 
-apt install software-properties-common -y
-add-apt-repository ppa:wireguard/wireguard -y
-apt update
-apt install wireguard-dkms wireguard-tools qrencode -y
-
+sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+sudo yum install -y wireguard-dkms wireguard-tools qrencode 
+sudo mkdir /etc/wireguard && cd /etc/wireguard
 
 NET_FORWARD="net.ipv4.ip_forward=1"
-sysctl -w  ${NET_FORWARD}
-sed -i "s:#${NET_FORWARD}:${NET_FORWARD}:" /etc/sysctl.conf
+sudo sysctl -w  ${NET_FORWARD}
+sudo sed -i "s:#${NET_FORWARD}:${NET_FORWARD}:" /etc/sysctl.conf
 
 cd /etc/wireguard
 
